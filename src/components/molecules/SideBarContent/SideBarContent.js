@@ -12,7 +12,8 @@ const SideBarContent = (props) => {
         <Sidebar
             style={{
                 fontFamily: 'Conv_SqueakyChalkSound',
-                width: '240px',
+                width: '300px',
+
             }}
             as={Menu}
             animation='overlay'
@@ -28,21 +29,24 @@ const SideBarContent = (props) => {
                 style={{
 
                     fontFamily: 'Conv_SqueakyChalkSound',
+                    fontSize: '1.25rem'
 
                 }}>
 
-                <ClassDropDown handleClass={handleClass} />
+                <Menu.Item as='a' style={{ width: '310px' }} >
+                    <ClassDropDown handleClass={handleClass} />
+                </Menu.Item>
 
                 {Object.keys(activities).map((week, index) => (
 
-                    <Menu.Item as='a' key={index} onClick={() => { handleWeek(week) }}>
+                    <Menu.Item as='a' key={index} style={{ width: '310px' }} onClick={() => { handleWeek(week) }}>
 
                         <Grid divided='vertically' textAlign='left'>
                             <Grid.Row columns={2} >
                                 <Grid.Column float='left' width='3'>
-                                    <CustomIcon name={week} width={25} />
+                                    <CustomIcon name={week} width={50} />
                                 </Grid.Column>
-                                <Grid.Column float='left' width='12' style={{ lineHeight: '30px' }}>
+                                <Grid.Column float='left' width='12' style={{ lineHeight: '70px', marginLeft: '10px', marginRight: '0px' }}>
                                     {week}
                                 </Grid.Column>
                             </Grid.Row>
