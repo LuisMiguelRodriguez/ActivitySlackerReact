@@ -11,8 +11,8 @@ const FileTable = (props) => (
 
     <Table.Body>
 
-      {props.currentFiles.map(file => (
-        <Table.Row>
+      {props.currentFiles.map((file, index)=> (
+        <Table.Row key={index}>
           <Table.Cell collapsing>
             <Icon name='file outline' /> 
           </Table.Cell>

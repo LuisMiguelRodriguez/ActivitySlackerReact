@@ -128,7 +128,7 @@ export default class MenuExampleTabularOnRight extends Component {
                 onClick={this.getReadme} 
                 />
               <Menu.Item name='slackReadme' active={activeItem === 'slackReadme'} onClick={this.slackReadme} >
-                <span class='slackButtonDescription'>
+                <span className='slackButtonDescription'>
                   <SlackIcon />
                   Slack Readme
               </span>
@@ -137,14 +137,14 @@ export default class MenuExampleTabularOnRight extends Component {
 
                 <SlackIcon />
 
-                <span class='slackButtonDescription'>
+                <span className='slackButtonDescription'>
                   Slack Unsolved
               </span>
               </Menu.Item>
               <Menu.Item name='slackSolved' active={activeItem === 'slackSolved'} onClick={this.slackSolved} >
                 <SlackIcon />
 
-                <span class='slackButtonDescription'>
+                <span className='slackButtonDescription'>
                   Slack Solved
               </span>
               </Menu.Item>
