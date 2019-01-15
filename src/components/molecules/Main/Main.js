@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Segment, Sidebar } from 'semantic-ui-react'
 import LessonPlan from '../LessonPlan';
-import Activity from '../Activity';
-import DropdownSelection from '../Dropdown';
+import Activities from '../Activities';
 import activities from './activities';
 import axios from 'axios';
 import SideBarContent from '../SideBarContent';
@@ -85,65 +84,69 @@ export default class SidebarExampleDimmed extends Component {
     handleClass = (e, data) => this.setState({ currentClass: data.value })
 
     render() {
-        const { visible } = this.state
+
+        const {
+            visible,
+            currentWeek,
+            currentLesson,
+            currentActivity,
+            currentFiles,
+            activities,
+            currentClass
+             } = this.state;
 
         return (
             <div style={styles}>
+            
                 <Sidebar.Pushable as={Segment}>
-                    
+
                     <SideBarContent
                         handleSidebarHide={this.handleSidebarHide}
-                        handleClass={this.handleClass}
-                        activities={this.state.activities}
                         handleWeek={this.handleWeek}
+                        handleClass={this.handleClass}
                         visible={this.state.visible}
+                        activities={activities}
                     />
-                  
-                        <Button.Group>
-                            <Button disabled={visible} onClick={this.handleShowClick}>
-                                Show sidebar
+
+                    <Button.Group>
+                        <Button disabled={visible} onClick={this.handleShowClick}>
+                            Show sidebar
                             </Button>
-                            <Button disabled={!visible} onClick={this.handleHideClick}>
-                                Hide sidebar
+                        <Button disabled={!visible} onClick={this.handleHideClick}>
+                            Hide sidebar
                             </Button>
-                        </Button.Group>
+                    </Button.Group>
 
+                    <Sidebar.Pusher dimmed={visible}>
 
-                        <Sidebar.Pusher dimmed={visible}>
-
-                            <Segment style={{
+                        <Segment
+                            style={{
                                 height: "450px",
                                 overflow: 'scroll'
-                            }} basic >
-                                <Header as='h3'>{this.state.currentWeek}</Header>
+                            }}
+                            basic >
 
-                                <LessonPlan
-                                    currentWeek={this.state.currentWeek}
-                                    handleLesson={this.handleLesson}
-                                    currentLesson={this.state.currentLesson}
+                            <Header as='h3'>{currentWeek}</Header>
 
-                                />
-
-
-                            </Segment>
-
-                            <DropdownSelection
-                                activities={this.state.activities[this.state.currentWeek]}
-                                updateActivity={this.updateActivity}
-                                handleFiles={this.handleFiles} />
-                            <Activity
-                                currentWeek={this.state.currentWeek}
-                                activities={this.state.activities}
-                                currentActivity={this.state.currentActivity}
-                                currentFiles={this.state.currentFiles}
-                                currentClass={this.state.currentClass}
-
+                            <LessonPlan
+                                handleLesson={this.handleLesson}
+                                currentWeek={currentWeek}
+                                currentLesson={currentLesson}
                             />
 
+                        </Segment>
 
+                        <Activities
+                            handleFiles={this.handleFiles}
+                            updateActivity={this.updateActivity}
+                            currentWeek={currentWeek}
+                            activities={activities[currentWeek]}
+                            currentActivity={currentActivity}
+                            currentFiles={currentFiles}
+                            currentClass={currentClass}
+                        />
 
-                        </Sidebar.Pusher>
-         
+                    </Sidebar.Pusher>
 
                 </Sidebar.Pushable>
             </div>

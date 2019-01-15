@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { Grid, Menu, Segment, TextArea, Form } from 'semantic-ui-react';
+import React, { Component, Fragment } from 'react';
+import { Grid, Menu, TextArea, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import FileTable from '../FileTable';
 import './activity.css';
 import SlackIcon from '../../atoms/SlackIcon';
+import DropdownSelection from '../Dropdown';
+
 
 export default class MenuExampleTabularOnRight extends Component {
   state = {
@@ -96,55 +98,65 @@ export default class MenuExampleTabularOnRight extends Component {
     const { activeItem } = this.state
 
     return (
-      <Grid>
-        <Grid.Column stretched width={12}>
+      <Fragment>
+        <DropdownSelection
+          activities={this.props.activities}
+          updateActivity={this.props.updateActivity}
+          handleFiles={this.props.handleFiles}
+        />
 
-          <Form>
-            <TextArea autoHeight
-              placeholder='placeholder text'
-              value={this.state.currentReadMe}
-              onChange={this.handleOnChange}
-            >
+        <Grid>
+          <Grid.Column stretched width={12}>
+
+            <Form>
+              <TextArea autoHeight
+                placeholder='placeholder text'
+                value={this.state.currentReadMe}
+                onChange={this.handleOnChange}
+              >
 
 
-            </TextArea>
-          </Form>
-        </Grid.Column>
+              </TextArea>
+            </Form>
+          </Grid.Column>
 
-        <Grid.Column width={4}>
-          <Menu fluid vertical tabular='right' style={{ textAlign: 'left' }}>
-            <Menu.Item
-              name='getReadme'
-              active={activeItem === 'getReadme'}
-              onClick={this.getReadme} />
-            <Menu.Item name='slackReadme' active={activeItem === 'slackReadme'} onClick={this.slackReadme} >
-              <span class='slackButtonDescription'>
+          <Grid.Column width={4}>
+            <Menu fluid vertical tabular='right' style={{ textAlign: 'left' }}>
+              <Menu.Item
+                name='getReadme'
+                active={activeItem === 'getReadme'}
+                onClick={this.getReadme} 
+                />
+              <Menu.Item name='slackReadme' active={activeItem === 'slackReadme'} onClick={this.slackReadme} >
+                <span class='slackButtonDescription'>
+                  <SlackIcon />
+                  Slack Readme
+              </span>
+              </Menu.Item>
+              <Menu.Item name='slackUnsolved' active={activeItem === 'slackUnsolved'} onClick={this.slackUnsolved} >
+
                 <SlackIcon />
-                Slack Readme
+
+                <span class='slackButtonDescription'>
+                  Slack Unsolved
               </span>
-            </Menu.Item>
-            <Menu.Item name='slackUnsolved' active={activeItem === 'slackUnsolved'} onClick={this.slackUnsolved} >
+              </Menu.Item>
+              <Menu.Item name='slackSolved' active={activeItem === 'slackSolved'} onClick={this.slackSolved} >
+                <SlackIcon />
 
-              <SlackIcon />
-
-              <span class='slackButtonDescription'>
-                Slack Unsolved
+                <span class='slackButtonDescription'>
+                  Slack Solved
               </span>
-            </Menu.Item>
-            <Menu.Item name='slackSolved' active={activeItem === 'slackSolved'} onClick={this.slackSolved} >
-              <SlackIcon />
+              </Menu.Item>
+              <Menu.Item name='files'>
 
-              <span class='slackButtonDescription'>
-                Slack Solved
-              </span>
-            </Menu.Item>
-            <Menu.Item name='files'>
-
-              <FileTable currentFiles={this.props.currentFiles} />
-            </Menu.Item>
-          </Menu>
-        </Grid.Column>
-      </Grid>
+                <FileTable currentFiles={this.props.currentFiles} />
+                
+              </Menu.Item>
+            </Menu>
+          </Grid.Column>
+        </Grid>
+      </Fragment>
     )
   }
 }
