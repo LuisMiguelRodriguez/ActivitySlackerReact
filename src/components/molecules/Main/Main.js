@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Segment, Sidebar } from 'semantic-ui-react'
+import { Button, Header, Segment, Sidebar, Container } from 'semantic-ui-react'
 import LessonPlan from '../LessonPlan';
 import Activities from '../Activities';
 import activities from './activities';
@@ -15,6 +15,7 @@ const styles = {
 };
 
 export default class SidebarExampleDimmed extends Component {
+    
     state = {
         visible: false,
         activities: activities,
@@ -93,11 +94,11 @@ export default class SidebarExampleDimmed extends Component {
             currentFiles,
             activities,
             currentClass
-             } = this.state;
+        } = this.state;
 
         return (
             <div style={styles}>
-            
+
                 <Sidebar.Pushable as={Segment}>
 
                     <SideBarContent
@@ -117,38 +118,46 @@ export default class SidebarExampleDimmed extends Component {
                             </Button>
                     </Button.Group>
 
-                    <Sidebar.Pusher dimmed={visible}>
+                    <Container
+                        style={{
+                            height: '100vh'
+                        }}
+                    >
+                        <Sidebar.Pusher dimmed={visible}>
 
-                        <Segment
-                            style={{
-                                height: "450px",
-                                overflow: 'scroll'
-                            }}
-                            basic >
+                            <Segment
+                                style={{
+                                    height: "450px",
+                                    overflow: 'scroll'
+                                }}
+                                basic >
 
-                            <Header as='h3'>{currentWeek}</Header>
+                                <Header as='h3'>{currentWeek}</Header>
 
-                            <LessonPlan
-                                handleLesson={this.handleLesson}
+                                <LessonPlan
+                                    handleLesson={this.handleLesson}
+                                    currentWeek={currentWeek}
+                                    currentLesson={currentLesson}
+                                />
+
+                            </Segment>
+
+                            <Activities
+                                handleFiles={this.handleFiles}
+                                updateActivity={this.updateActivity}
                                 currentWeek={currentWeek}
-                                currentLesson={currentLesson}
+                                activities={activities[currentWeek]}
+                                currentActivity={currentActivity}
+                                currentFiles={currentFiles}
+                                currentClass={currentClass}
                             />
 
-                        </Segment>
+                        </Sidebar.Pusher>
 
-                        <Activities
-                            handleFiles={this.handleFiles}
-                            updateActivity={this.updateActivity}
-                            currentWeek={currentWeek}
-                            activities={activities[currentWeek]}
-                            currentActivity={currentActivity}
-                            currentFiles={currentFiles}
-                            currentClass={currentClass}
-                        />
-
-                    </Sidebar.Pusher>
+                    </Container>
 
                 </Sidebar.Pushable>
+
             </div>
         )
     }

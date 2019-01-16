@@ -2,6 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 const slackifyMarkdown = require('slackify-markdown');
 const lessPlanPath = process.env.TRILOGY_DIR;
+const selectClass = require('../selectClass');
 
 module.exports = function (app) {
 
@@ -70,37 +71,8 @@ module.exports = function (app) {
 
         var value = req.body.classChosen;
 
-        // grab slack webhooks
-        const { webhook_uci_all } = process.env;
-        const { webhook_uci_m_w } = process.env;
-        const { webhook_uci_t_th } = process.env;
-        const { webhook_uci_test } = process.env;
+        var slackClass = selectClass(value);
 
-        switch (value) {
-            case 1:
-                var slackClass = webhook_uci_all;
-                console.log('All channel selected')
-                break;
-
-            case 2:
-                var slackClass = webhook_uci_m_w;
-                console.log('Mon-Wed Channel picked')
-                break;
-
-            case 3:
-                var slackClass = webhook_uci_t_th;
-                console.log('Tue-Thur Channel Picked')
-                break;
-
-            case 4:
-                var slackClass = webhook_uci_test;
-                console.log('')
-                break;
-
-            default:
-                console.log('No class chosen');
-
-        }
         console.log(slackClass)
 
         axios.post(slackClass, JSON.stringify(options))
