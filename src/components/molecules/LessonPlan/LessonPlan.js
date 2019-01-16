@@ -12,7 +12,6 @@ export default class Content extends Component {
 
 
     handleItemClick = (e, { name , value }) => {
-        console.log(value)
         this.setState({ activeItem: name })
 
 
@@ -32,7 +31,6 @@ export default class Content extends Component {
           });
 
     }
-
 
 
     render() {

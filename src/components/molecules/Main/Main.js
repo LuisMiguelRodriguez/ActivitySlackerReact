@@ -5,6 +5,7 @@ import Activities from '../Activities';
 import activities from './activities';
 import axios from 'axios';
 import SideBarContent from '../SideBarContent';
+import CustomIcon from '../../atoms/icons';
 
 const styles = {
     display: "",
@@ -12,10 +13,11 @@ const styles = {
     // alignItems: "center",
     fontFamily: 'Conv_SqueakyChalkSound',
     justifyContent: "space-between",
+    backgroundColor: "#1b1c1d"
 };
 
 export default class SidebarExampleDimmed extends Component {
-    
+
     state = {
         visible: false,
         activities: activities,
@@ -118,21 +120,20 @@ export default class SidebarExampleDimmed extends Component {
                             </Button>
                     </Button.Group>
 
-                    <Container
-                        style={{
-                            height: '100vh'
-                        }}
-                    >
+                    <Container style={{ height: '100vh' }}>
+
                         <Sidebar.Pusher dimmed={visible}>
 
                             <Segment
                                 style={{
                                     height: "450px",
-                                    overflow: 'scroll'
+                                    overflow: 'scroll',
+                                    fontFamily: 'Conv_SqueakyChalkSound',
                                 }}
                                 basic >
 
-                                <Header as='h3'>{currentWeek}</Header>
+                                <CustomIcon name={this.state.currentWeek} width={150} />
+                                <Header as='h3' style={{fontFamily: 'Conv_SqueakyChalkSound'}}>{currentWeek}</Header>
 
                                 <LessonPlan
                                     handleLesson={this.handleLesson}

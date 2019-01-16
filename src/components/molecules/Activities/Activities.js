@@ -9,7 +9,7 @@ import DropdownSelection from '../Dropdown';
 
 export default class MenuExampleTabularOnRight extends Component {
   state = {
-    activeItem: 'getReadme',
+    activeItem: '',
     currentActivity: '',
     currentReadMe: ''
   }
@@ -103,6 +103,7 @@ export default class MenuExampleTabularOnRight extends Component {
           activities={this.props.activities}
           updateActivity={this.props.updateActivity}
           handleFiles={this.props.handleFiles}
+         
         />
 
         <Grid>

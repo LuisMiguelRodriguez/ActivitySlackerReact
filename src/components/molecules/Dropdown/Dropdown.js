@@ -8,7 +8,9 @@ const DropdownSelection = (props) => {
   return (
   <Dropdown placeholder='Select Activity' 
   onChange={ props.updateActivity } fluid selection 
-  options={activities} />
+  options={activities} 
+  style={{marginBottom:'20px'}}
+  />
   )
 }
 
