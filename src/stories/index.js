@@ -7,7 +7,8 @@ import { linkTo } from '@storybook/addon-links';
 import { Button, Welcome } from '@storybook/react/demo';
 
 import Menu from '../components/molecules/Menu/Menu';
-import SideBar from '../components/molecules/SideBar';
+import SideBarContent from '../components/molecules/SideBarContent';
+import activities from '../components/molecules/Main/activities';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -25,4 +26,4 @@ storiesOf('Button', module)
     .add('Menu for each activity', () => <Menu/> )
 
   storiesOf('SideBar', module)
-    .add('SideBar', () => <SideBar/>)
+    .add('SideBar', () => <SideBarContent activities={activities} visible={true}/>)

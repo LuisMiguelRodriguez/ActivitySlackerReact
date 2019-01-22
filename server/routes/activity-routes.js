@@ -4,6 +4,13 @@ const SLACK_TOKEN = process.env.SLACK_TOKEN_MYSELF
 const slack = new Slack(SLACK_TOKEN);
 const fs = require('fs');
 const lessPlanPath = process.env.TRILOGY_DIR
+const axios = require('axios');
+const { WebClient } = require('@slack/client');
+const { selectClass } = require('../utils-module');
+
+const token = process.env.TOKEN;
+
+const web = new WebClient(token);
 
 module.exports = function (app) {
 
@@ -12,6 +19,8 @@ module.exports = function (app) {
 
         var value = req.body.classChosen;
         var slackClass = selectClass(value);
+
+        console.log('req.body @ entry :  ', req.body)
 
         readDirector(res, req, lessPlanPath, slackClass, 'Solved')
             .then(prepareCompression)
@@ -44,34 +53,6 @@ module.exports = function (app) {
     })
 }
 
-function selectClass(value) {
-    switch (value) {
-        case 1:
-            return '_all_class';
-            console.log('All channel selected')
-            break;
-
-        case 2:
-            return '_m_w_class_chat';
-            console.log('Mon-Wed Channel picked')
-            break;
-
-        case 3:
-            return '_t_th_class_chat';
-            console.log('Tue-Thur Channel Picked')
-            break;
-
-        case 4:
-            return '@luis.the.coder';
-            console.log('Testing Channel')
-            break;
-
-        default:
-            return null;
-
-    }
-}
-
 function readDirector(res, req, lessPlanPath, slackClass, isSolved) {
 
     return new Promise(function (resolve, reject) {
@@ -94,7 +75,7 @@ function readDirector(res, req, lessPlanPath, slackClass, isSolved) {
 
                 });
 
-                resolve({res, req, solved, lessPlanPath, slackClass, isSolved});
+                resolve({ res, req, solved, lessPlanPath, slackClass, isSolved });
             }
         });
 
@@ -103,11 +84,11 @@ function readDirector(res, req, lessPlanPath, slackClass, isSolved) {
 
 function prepareCompression(data) {
 
-    let {res, req, solved, lessPlanPath, slackClass, isSolved} = data;
+    let { res, req, solved, lessPlanPath, slackClass, isSolved } = data;
     let folder;
     let zippFile;
 
-    if (isSolved == 'UnSolved'){
+    if (isSolved == 'UnSolved') {
 
         folder = '/Unsolved';
         zippFile = '-Solved.zip'
@@ -123,8 +104,7 @@ function prepareCompression(data) {
         if (solved) {
 
             let path = `${lessPlanPath}${req.body.dir}${folder}`;
-            let zippedPath = `${lessPlanPath}${req.body.dir}${req.body.activity}${zippFile}`;
-
+            let zippedPath = `${lessPlanPath}${req.body.dir}/${req.body.activity}${zippFile}`;
 
             zipFolder(path, zippedPath,
 
@@ -139,14 +119,13 @@ function prepareCompression(data) {
 
                     } else {
 
-                        resolve({res, req, zippedPath, slackClass});
+                        resolve({ res, req, zippedPath, slackClass });
 
                     }
 
                 });
 
         } else {
-
 
             let path = `${lessPlanPath}${req.body.dir}`;
             let zippedPath = `${lessPlanPath}${req.body.dir}${req.body.activity}-EntireFolder.zip`
@@ -164,7 +143,7 @@ function prepareCompression(data) {
 
                     } else {
 
-                        resolve({res, req, zippedPath, slackClass});
+                        resolve({ res, req, zippedPath, slackClass });
 
                     }
 
@@ -182,27 +161,18 @@ function slackZipped(data) {
 
     return new Promise((resolve, reject) => {
 
-        slack.uploadFile({
-
+        web.files.upload({
             file: fs.createReadStream(zippedPath),
-            filetype: 'auto',
             channels: slackClass
+        })
+            .then((res) => {
+                // `res` contains information about the uploaded file
+                
+                console.log('File uploaded: ', res.file.id);
 
-        },
-            function (err, data) {
-
-                if (err) {
-
-                    reject(err);
-
-                } else {
-
-                    resolve(data);
-
-                }
-
-                res.send(200);
-            });
+                res.json(200);
+            })
+            .catch(console.error);
 
     })
 

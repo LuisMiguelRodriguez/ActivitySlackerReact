@@ -67,11 +67,11 @@ export default class MenuExampleTabularOnRight extends Component {
 
     this.handleItemClick(e, { name: name });
 
-    let dir = `/01-Class-Content/${this.props.currentWeek}/01-Activities/${this.props.currentActivity}`
-
+    let dir = `01-Class-Content/${this.props.currentWeek}/01-Activities/${this.props.currentActivity}`
+    console.log('this.props.currentActivity from React ', this.props.currentActivity)
     axios.post('/unsolved', {
       dir,
-      acitivity: this.state.currentActivity,
+      activity: this.props.currentActivity,
       classChosen: this.props.currentClass
     })
       .then((res) => console.log(res))
@@ -82,11 +82,11 @@ export default class MenuExampleTabularOnRight extends Component {
 
     this.handleItemClick(e, { name: name });
 
-    let dir = `/01-Class-Content/${this.props.currentWeek}/01-Activities/${this.props.currentActivity}`
+    let dir = `01-Class-Content/${this.props.currentWeek}/01-Activities/${this.props.currentActivity}`
 
     axios.post('/solved', {
       dir,
-      acitivity: this.state.currentActivity,
+      activity: this.props.currentActivity,
       classChosen: this.props.currentClass
     })
       .then((res) => console.log(res))

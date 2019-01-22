@@ -2,28 +2,15 @@ const fs = require('fs');
 const axios = require('axios');
 const slackifyMarkdown = require('slackify-markdown');
 const lessPlanPath = process.env.TRILOGY_DIR;
-const selectClass = require('../selectClass');
+const { selectClass, readDirectory } = require('../utils-module');
+const { WebClient } = require('@slack/client');
+
+// An access token (from your Slack app or custom integration - xoxp, xoxb)
+const token = process.env.TOKEN;
+
+const web = new WebClient(token);
 
 module.exports = function (app) {
-
-
-
-    function readDirectory(path, data, res) {
-        fs.readdir(path, function (err, items) {
-            if (err) throw err;
-            console.log(items);
-
-            for (var i = 0; i < items.length; i++) {
-                console.log(items[i]);
-            }
-
-            res.send({
-                data: data,
-                files: items
-            });
-
-        });
-    }
 
     app.get('/readMe', function (req, res) {
 
@@ -75,18 +62,17 @@ module.exports = function (app) {
 
         console.log(slackClass)
 
-        axios.post(slackClass, JSON.stringify(options))
-            .then((response) => {
-                console.log('SUCCEEDED: Sent slack webhook: \n', response.data);
-                res.send(200);
+        // See: https://api.slack.com/methods/chat.postMessage
+        web.chat.postMessage({ channel: slackClass, text: slackMarkdown })
+            .then((res) => {
+                // `res` contains information about the posted message
+                console.log('Message sent: ', res.ts);
+                res.sendStatus(200)
             })
-            .catch((error) => {
-                console.log('FAILED: Send slack webhook', error);
-                // reject(new Error('FAILED: Send slack webhook'));
-                res.send(404)
+            .catch(() => {
+                console.error
+                res.sendStatus(404);
             });
-
-        console.log('after post')
 
     })
 

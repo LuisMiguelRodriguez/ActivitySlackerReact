@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Sidebar, Grid, Container } from 'semantic-ui-react'
+import { Menu, Sidebar, Grid } from 'semantic-ui-react'
 import CustomIcon from '../../atoms/icons';
 import ClassDropDown from '../ClassDropDown';
 
