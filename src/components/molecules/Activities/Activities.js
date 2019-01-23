@@ -4,6 +4,8 @@ import axios from 'axios';
 import FileTable from '../FileTable';
 import './activity.css';
 import SlackIcon from '../../atoms/SlackIcon';
+import GitHubIcon from '../../atoms/GitHubIcon';
+
 import DropdownSelection from '../Dropdown';
 
 
@@ -90,6 +92,20 @@ export default class MenuExampleTabularOnRight extends Component {
       classChosen: this.props.currentClass
     })
       .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+  }
+
+  gitSolved = (e, { name }) => {
+
+    this.handleItemClick(e, { name: name });
+
+    let dir = `01-Class-Content/${this.props.currentWeek}/01-Activities/${this.props.currentActivity}/Solved`
+
+    axios.post('/git', {
+      dir,
+    })
+      .then((res) => console.log(res))
       .catch((err) => console.log(err))
 
   }
@@ -103,7 +119,7 @@ export default class MenuExampleTabularOnRight extends Component {
           activities={this.props.activities}
           updateActivity={this.props.updateActivity}
           handleFiles={this.props.handleFiles}
-         
+
         />
 
         <Grid>
@@ -126,8 +142,8 @@ export default class MenuExampleTabularOnRight extends Component {
               <Menu.Item
                 name='getReadme'
                 active={activeItem === 'getReadme'}
-                onClick={this.getReadme} 
-                />
+                onClick={this.getReadme}
+              />
               <Menu.Item name='slackReadme' active={activeItem === 'slackReadme'} onClick={this.slackReadme} >
                 <span className='slackButtonDescription'>
                   <SlackIcon />
@@ -149,10 +165,21 @@ export default class MenuExampleTabularOnRight extends Component {
                   Slack Solved
               </span>
               </Menu.Item>
+
+              <Menu.Item name='gitSolved' active={activeItem === 'gitSolved'} onClick={this.gitSolved} >
+
+                <GitHubIcon />
+
+                <span className='slackButtonDescription'>
+                  Solved
+                  </span>
+              </Menu.Item>
+
+
               <Menu.Item name='files'>
 
                 <FileTable currentFiles={this.props.currentFiles} />
-                
+
               </Menu.Item>
             </Menu>
           </Grid.Column>

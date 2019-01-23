@@ -1,10 +1,6 @@
 const zipFolder = require('zip-folder');
-const Slack = require('node-slack-upload');
-const SLACK_TOKEN = process.env.SLACK_TOKEN_MYSELF
-const slack = new Slack(SLACK_TOKEN);
 const fs = require('fs');
 const lessPlanPath = process.env.TRILOGY_DIR
-const axios = require('axios');
 const { WebClient } = require('@slack/client');
 const { selectClass } = require('../utils-module');
 

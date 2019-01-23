@@ -17,6 +17,7 @@ require("./routes/readme-routes.js")(app);
 require("./routes/lesson-plan-routes.js")(app);
 require("./routes/activity-routes.js")(app);
 require("./routes/files-routes.js")(app);
+require("./routes/git-route.js")(app);
 
 
 app.get('/api/greeting', (req, res) => {

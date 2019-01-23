@@ -11,6 +11,7 @@
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "semantic-ui-react": "^0.84.0",
+    "shelljs": "^0.8.3",
     "slackify-markdown": "^1.1.0"
   },
   "scripts": {

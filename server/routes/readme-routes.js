@@ -1,5 +1,4 @@
 const fs = require('fs');
-const axios = require('axios');
 const slackifyMarkdown = require('slackify-markdown');
 const lessPlanPath = process.env.TRILOGY_DIR;
 const { selectClass, readDirectory } = require('../utils-module');

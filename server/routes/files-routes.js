@@ -1,7 +1,4 @@
 const fs = require('fs');
-const axios = require('axios');
-const slackifyMarkdown = require('slackify-markdown');
-// const lessPlanPath = "/media/luisthecoder/Code/UCI/";
 const lessPlanPath = process.env.TRILOGY_DIR;
 
 module.exports = function (app) {
