@@ -24,7 +24,7 @@ module.exports = function (app) {
         // shell.exec(__dirname + '../utils-module/bash/gitSolved.sh')
 
         
-        let testscript = exec( `${__dirname}/../utils-module/bash/gitSolved.sh ${lessPlanPath+req.body.dir}/  ${lessPlanPath}test-repo/${finalDest}`)
+        let testscript = exec( `${__dirname}/../utils-module/bash/gitSolved.sh ${lessPlanPath+req.body.dir}/  ${lessPlanPath}test-repo${finalDest}`)
 
         // console.log('directory path :  ', directoryPath)
         // const testscript = exec(`cp  -r ${lessPlanPath+req.body.dir}/. ${lessPlanPath}/test-repo/Solved `);
