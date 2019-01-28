@@ -29,17 +29,17 @@ module.exports = function (app) {
         // console.log('directory path :  ', directoryPath)
         // const testscript = exec(`cp  -r ${lessPlanPath+req.body.dir}/. ${lessPlanPath}/test-repo/Solved `);
         
-        // testscript.stdout.on('data', function(data){
-        //     console.log(data); 
-        //     // sendBackInfo();
+        testscript.stdout.on('data', function(data){
+            console.log(data); 
+            // sendBackInfo();
 
 
-        // });
+        });
         
-        // testscript.stderr.on('data', function(data){
-        //     console.log(data);
-        //     // triggerErrorStuff(); 
-        // });
+        testscript.stderr.on('data', function(data){
+            console.log(data);
+            // triggerErrorStuff(); 
+        });
 
         res.sendStatus(200)
 
