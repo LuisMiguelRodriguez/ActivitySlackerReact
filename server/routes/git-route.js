@@ -16,7 +16,9 @@ module.exports = function (app) {
 
         var classRepo = req.body.dir.split('01-Class-Content/')[1];
 
-        var finalDest = `${lessPlanPath}${classRepo}`;
+        var finalDest = `${lessPlanPath}test-repo/${classRepo}`;
+
+        console.log(finalDest);
 
         
 
@@ -24,10 +26,10 @@ module.exports = function (app) {
         // shell.exec(__dirname + '../utils-module/bash/gitSolved.sh')
 
         
-        let testscript = exec( `${__dirname}/../utils-module/bash/gitSolved.sh ${lessPlanPath+req.body.dir}/  ${lessPlanPath}test-repo${finalDest}`)
+        let testscript = exec( `${__dirname}/../utils-module/bash/gitSolved.sh ${lessPlanPath+req.body.dir}/  ${finalDest}`)
 
         // console.log('directory path :  ', directoryPath)
-        // const testscript = exec(`cp  -r ${lessPlanPath+req.body.dir}/. ${lessPlanPath}/test-repo/Solved `);
+        // const testscript = exec(`cp  -r ${lessPlanPath+req.body.dir}/. ${finalDest}`);
         
         testscript.stdout.on('data', function(data){
             console.log(data); 
