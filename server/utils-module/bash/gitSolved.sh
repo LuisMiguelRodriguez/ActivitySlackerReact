@@ -5,7 +5,7 @@ echo $1
 echo -------------
 echo $2
 
-cp -r $1. $2/Solved
+cp -r $1. $2
 
 cd $2
 git add .

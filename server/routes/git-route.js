@@ -1,46 +1,27 @@
-// const { spawn } = require('child_process')
 const exec = require('child_process').exec;
-const shell = require('shelljs');
-const path = require('path');
-const lessPlanPath = process.env.TRILOGY_DIR;
-
-
+const lessPlanPath = process.env.TRILOGY_DIR
+const studentRepo = process.env.STUDENT_REPO;
 
 module.exports = function (app) {
 
     app.post('/git', function (req, res) {
 
-        console.log('from git route');
-
-        console.log('req.body : ', req.body);
-
         var classRepo = req.body.dir.split('01-Class-Content/')[1];
 
-        var finalDest = `${lessPlanPath}test-repo/${classRepo}`;
+        var finalDest = `${studentRepo}${classRepo}`;
 
-        console.log(finalDest);
-
-        
-
-        // console.log(__dirname+ '../utils-module')
-        // shell.exec(__dirname + '../utils-module/bash/gitSolved.sh')
-
-        
         let testscript = exec( `${__dirname}/../utils-module/bash/gitSolved.sh ${lessPlanPath+req.body.dir}/  ${finalDest}`)
-
-        // console.log('directory path :  ', directoryPath)
-        // const testscript = exec(`cp  -r ${lessPlanPath+req.body.dir}/. ${finalDest}`);
         
         testscript.stdout.on('data', function(data){
-            console.log(data); 
-            // sendBackInfo();
 
+            console.log(data); 
 
         });
         
         testscript.stderr.on('data', function(data){
+
             console.log(data);
-            // triggerErrorStuff(); 
+
         });
 
         res.sendStatus(200)
