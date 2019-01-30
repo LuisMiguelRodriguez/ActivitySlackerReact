@@ -7,13 +7,22 @@ import SlackIcon from '../../atoms/SlackIcon';
 import GitHubIcon from '../../atoms/GitHubIcon';
 
 import DropdownSelection from '../Dropdown';
+import { connectWithStore } from '../../../store';
 
 
-export default class MenuExampleTabularOnRight extends Component {
+class Activities extends Component {
   state = {
     activeItem: '',
     currentActivity: '',
     currentReadMe: ''
+  }
+
+  componentDidUpdate(prevProps) {
+
+    if (this.props.currentActivity !== prevProps.currentActivity) {
+      this.props.handleFiles();
+    }
+
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -113,12 +122,19 @@ export default class MenuExampleTabularOnRight extends Component {
   render() {
     const { activeItem } = this.state
 
+    const { activities,
+      updateActivity,
+      handleFiles,
+      currentWeek,
+      currentFiles
+    } = this.props;
+
     return (
       <Fragment>
         <DropdownSelection
-          activities={this.props.activities}
-          updateActivity={this.props.updateActivity}
-          handleFiles={this.props.handleFiles}
+          activities={activities[currentWeek]}
+          updateActivity={updateActivity}
+          handleFiles={handleFiles}
 
         />
 
@@ -131,7 +147,6 @@ export default class MenuExampleTabularOnRight extends Component {
                 value={this.state.currentReadMe}
                 onChange={this.handleOnChange}
               >
-
 
               </TextArea>
             </Form>
@@ -175,10 +190,9 @@ export default class MenuExampleTabularOnRight extends Component {
                   </span>
               </Menu.Item>
 
-
               <Menu.Item name='files'>
 
-                <FileTable currentFiles={this.props.currentFiles} />
+                <FileTable currentFiles={currentFiles} />
 
               </Menu.Item>
             </Menu>
@@ -187,4 +201,7 @@ export default class MenuExampleTabularOnRight extends Component {
       </Fragment>
     )
   }
+
 }
+
+export default connectWithStore(Activities);
