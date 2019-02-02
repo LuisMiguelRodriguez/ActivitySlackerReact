@@ -11,7 +11,7 @@ class SideBarContent extends Component {
 
     render() {
 
-        const { activities, handleClass, handleWeek, visible } = this.props;
+        const { activities, handleClass, handleWeek, visible , handleSidebarHide} = this.props;
 
         return (
 
@@ -27,7 +27,7 @@ class SideBarContent extends Component {
                 animation='overlay'
                 icon='labeled'
                 inverted
-                onHide={this.handleSidebarHide}
+                onHide={handleSidebarHide}
                 vertical
                 visible={visible}
             >
@@ -46,7 +46,11 @@ class SideBarContent extends Component {
 
                     {Object.keys(activities).map((week, index) => (
 
-                        <Menu.Item as='a' key={index} style={{ width: '310px' }} onClick={() => { handleWeek(week) }}>
+                        <Menu.Item as='a' key={index} style={{ width: '310px' }}
+                            onClick={() => { 
+                                handleWeek(week) 
+                                handleSidebarHide();
+                                }}>
 
                             <Grid divided='vertically' textAlign='left'>
                                 <Grid.Row columns={2} >

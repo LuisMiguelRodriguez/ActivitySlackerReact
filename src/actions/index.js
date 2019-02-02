@@ -35,7 +35,8 @@ export function handleFiles() {
             let files = response.data.files;
 
             this.setState({
-                currentFiles: files
+                currentFiles: files,
+                visible: false
             })
 
         })

@@ -29,21 +29,22 @@ class Main extends Component {
 
         const { visible } = this.state;
 
-        const { currentWeek } = this.props;
+            const { currentWeek, } = this.props;
 
         return (
             <div style={styles}>
 
                 <SideBarContent
                     handleSidebarHide={this.handleSidebarHide}
-                    visible={this.state.visible}
+                    visible={visible}
                     style={{ height: 'none', maxHeight: 'none' }}
+
                 />
 
                 <Sidebar.Pushable as={Segment} >
 
                     <Button.Group>
-                        <Button disabled={visible} onClick={this.handleShowClick}>
+                        <Button disabled={visible} onClick={this.handleShowClick} >
                             Show sidebar
                             </Button>
                         <Button disabled={!visible} onClick={this.handleHideClick}>

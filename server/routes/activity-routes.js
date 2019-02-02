@@ -84,15 +84,17 @@ function prepareCompression(data) {
     let folder;
     let zippFile;
 
+    console.log('value of isSolved:   ',isSolved)
+
     if (isSolved == 'UnSolved') {
 
         folder = '/Unsolved';
-        zippFile = '-Solved.zip'
+        zippFile = 'UnSolved.zip'
 
     } else {
 
         folder = '/solved';
-        zippFile = '-UnSolved.zip'
+        zippFile = '-Solved.zip'
     }
 
     return new Promise(function (resolve, reject) {
@@ -155,6 +157,8 @@ function slackZipped(data) {
 
     let { res, req, zippedPath, slackClass } = data;
 
+    let response = res;
+
     return new Promise((resolve, reject) => {
 
         web.files.upload({
@@ -166,7 +170,7 @@ function slackZipped(data) {
                 
                 console.log('File uploaded: ', res.file.id);
 
-                res.json(200);
+                response.status(200);
             })
             .catch(console.error);
 
