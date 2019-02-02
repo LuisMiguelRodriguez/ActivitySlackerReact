@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import SideBarContent from './SideBarContent';
-import activities from '../Main/activities';
+import { Provider } from '../../../store';
 
 
-  storiesOf('SideBar', module)
-    .add('SideBar', () => <SideBarContent activities={activities} visible={true}/>)
+storiesOf('SideBar', module)
+  .add('SideBar', () => <Provider><SideBarContent visible={true}/></Provider>)
