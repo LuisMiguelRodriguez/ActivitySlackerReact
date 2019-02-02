@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon, Table } from 'semantic-ui-react';
+import { connectWithStore } from '../../../store';
 
 const FileTable = (props) => (
   <Table celled striped>
@@ -28,4 +29,4 @@ const FileTable = (props) => (
   </Table>
 )
 
-export default FileTable; 
+export default connectWithStore(FileTable); 

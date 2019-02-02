@@ -1,17 +1,19 @@
-import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import React from 'react';
+import { Dropdown } from 'semantic-ui-react';
+import { connectWithStore } from '../../../store';
 
 const DropdownSelection = (props) => {
-
-  const activities = props.activities.map(act => ({ text: act, value: act }))
+  
+  const { activities, currentWeek, updateActivity } = props;
+  const activs = activities[currentWeek].map(act => ({ text: act, value: act }))
 
   return (
     <Dropdown placeholder='Select Activity'
-      onChange={props.updateActivity} fluid selection
-      options={activities}
+      onChange={updateActivity} fluid selection
+      options={activs}
       style={{ marginBottom: '20px' }}
     />
   )
 }
 
-export default DropdownSelection;
+export default connectWithStore(DropdownSelection);

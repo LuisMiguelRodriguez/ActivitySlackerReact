@@ -122,18 +122,14 @@ class Activities extends Component {
   render() {
     const { activeItem } = this.state
 
-    const { activities,
-      updateActivity,
+    const {
       handleFiles,
-      currentWeek,
       currentFiles
     } = this.props;
 
     return (
       <Fragment>
         <DropdownSelection
-          activities={activities[currentWeek]}
-          updateActivity={updateActivity}
           handleFiles={handleFiles}
 
         />
@@ -192,7 +188,7 @@ class Activities extends Component {
 
               <Menu.Item name='files'>
 
-                <FileTable currentFiles={currentFiles} />
+                <FileTable />
 
               </Menu.Item>
             </Menu>
