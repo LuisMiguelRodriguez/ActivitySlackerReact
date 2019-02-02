@@ -122,15 +122,9 @@ class Activities extends Component {
   render() {
     const { activeItem } = this.state
 
-    const {
-      handleFiles,
-      currentFiles
-    } = this.props;
-
     return (
       <Fragment>
         <DropdownSelection
-          handleFiles={handleFiles}
 
         />
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Header, Segment, Sidebar, Container } from 'semantic-ui-react'
-import LessonPlan from '../LessonPlan';
-import Activities from '../Activities';
-import SideBarContent from '../SideBarContent';
+import LessonPlan from '../../molecules/LessonPlan'
+import Activities from '../../molecules/Activities';
+import SideBarContent from '../../molecules/SideBarContent';
 import CustomIcon from '../../atoms/icons';
 
 import { connectWithStore } from '../../../store';

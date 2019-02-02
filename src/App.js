@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Main from '../src/components/molecules/Main';
+import Main from '../src/components/pages/main'; 
 
 class App extends Component {
 
