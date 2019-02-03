@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Grid, Menu, TextArea, Form } from 'semantic-ui-react';
+import { Grid, TextArea, Form } from 'semantic-ui-react';
 import FileTable from '../FileTable';
 import AsideCTA from '../AsideCTA';
 
@@ -13,7 +13,6 @@ class Activities extends Component {
   state = {
     activeItem: '',
     currentActivity: '',
-    currentReadMe: ''
   }
 
   componentDidUpdate(prevProps) {
@@ -40,6 +39,7 @@ class Activities extends Component {
           <Grid.Column stretched width={12}>
 
             <Form>
+
               <TextArea autoHeight
                 placeholder='placeholder text'
                 value={readMe}
@@ -47,23 +47,20 @@ class Activities extends Component {
               >
 
               </TextArea>
+
             </Form>
+
           </Grid.Column>
 
           <Grid.Column width={4}>
-            <Menu fluid vertical tabular='right' style={{ textAlign: 'left' }}>
 
-              <AsideCTA />
+            <AsideCTA />
 
-              <Menu.Item name='files'>
+            <FileTable />
 
-                <FileTable />
-
-              </Menu.Item>
-            </Menu>
           </Grid.Column>
         </Grid>
-      </Fragment>
+      </Fragment >
     )
   }
 

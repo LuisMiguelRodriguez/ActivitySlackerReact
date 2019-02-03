@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -116,7 +116,7 @@ class AsideCTA extends Component {
 
         return (
 
-            <Fragment>
+            <Menu fluid vertical tabular='right' style={{ textAlign: 'left' }}>
                 <Menu.Item
                     name='getReadme'
                     active={activeItem === 'getReadme'}
@@ -146,7 +146,7 @@ class AsideCTA extends Component {
 
                     <span className='slackButtonDescription'>Solved</span>
                 </Menu.Item>
-            </Fragment>
+            </Menu>
 
         )
     }
