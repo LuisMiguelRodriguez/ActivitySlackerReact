@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Header, Segment, Sidebar, Container } from 'semantic-ui-react'
+import { Button, Segment, Sidebar, Container } from 'semantic-ui-react'
 import LessonPlan from '../../molecules/LessonPlan'
 import Activities from '../../organisms/Activities';
 import SideBarContent from '../../molecules/SideBarContent';
-import CustomIcon from '../../atoms/icons';
+import Header from '../../molecules/Header';
 
 import { connectWithStore } from '../../../store';
 
@@ -28,8 +28,7 @@ class Main extends Component {
     render() {
 
         const { visible } = this.state;
-
-            const { currentWeek, } = this.props;
+        const { currentWeek } = this.props;
 
         return (
             <div style={styles}>
@@ -64,9 +63,7 @@ class Main extends Component {
                                 }}
                                 basic >
 
-                                <CustomIcon name={currentWeek} width={150} />
-                                <Header as='h3' style={{ fontFamily: 'Conv_SqueakyChalkSound' }}>{currentWeek}</Header>
-
+                                <Header currentWeek={currentWeek}/>
                                 <LessonPlan />
 
                             </Segment>
