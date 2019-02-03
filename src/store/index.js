@@ -14,6 +14,7 @@ export class Provider extends Component {
         currentClass: '',
         currentFiles: [],
         visible: false,
+        readMe:'',
         activities
 
     }

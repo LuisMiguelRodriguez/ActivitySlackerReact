@@ -59,3 +59,8 @@ export function handleClass(e, data) {
     this.setState({ currentClass: data.value });
     
 }
+
+
+export function handleReadMe (readMe){
+    this.setState({readMe})
+}

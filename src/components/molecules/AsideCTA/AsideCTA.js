@@ -8,20 +8,17 @@ import GitHubIcon from '../../atoms/GitHubIcon';
 import { connectWithStore } from '../../../store';
 
 
-
-
 class AsideCTA extends Component {
 
     state = {
         activeItem: '',
         currentActivity: '',
-        currentReadMe: ''
     }
 
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-    handleOnChange = (e) => this.setState({ currentReadMe: e.target.value })
+
 
     getReadme = (e, { name }) => {
         console.log(name)
@@ -43,9 +40,9 @@ class AsideCTA extends Component {
             .then((response) => {
                 console.log(response.data);
                 var readme = response.data.data
-                this.setState({
-                    currentReadMe: readme
-                })
+
+                this.props.handleReadMe(readme)
+
             })
             .catch((error) => {
                 console.log(error);
@@ -60,7 +57,7 @@ class AsideCTA extends Component {
         console.log(this.props.currentClass);
 
         axios.post('/slack', {
-            readme: this.state.currentReadMe,
+            readme: this.props.readMe,
             classChosen: this.props.currentClass
         })
             .then((response) => console.log(response))
@@ -113,15 +110,12 @@ class AsideCTA extends Component {
 
     }
 
-
-
-
     render() {
 
         const { activeItem } = this.state;
 
-
         return (
+
             <Fragment>
                 <Menu.Item
                     name='getReadme'
@@ -129,34 +123,28 @@ class AsideCTA extends Component {
                     onClick={this.getReadme}
                 />
                 <Menu.Item name='slackReadme' active={activeItem === 'slackReadme'} onClick={this.slackReadme} >
-                    <span className='slackButtonDescription'>
-                        <SlackIcon />
-                        Slack Readme
-              </span>
+                    <SlackIcon />
+
+                    <span className='slackButtonDescription'>Slack Readme</span>
+
                 </Menu.Item>
                 <Menu.Item name='slackUnsolved' active={activeItem === 'slackUnsolved'} onClick={this.slackUnsolved} >
 
                     <SlackIcon />
 
-                    <span className='slackButtonDescription'>
-                        Slack Unsolved
-              </span>
+                    <span className='slackButtonDescription'>Slack Unsolved</span>
                 </Menu.Item>
                 <Menu.Item name='slackSolved' active={activeItem === 'slackSolved'} onClick={this.slackSolved} >
                     <SlackIcon />
 
-                    <span className='slackButtonDescription'>
-                        Slack Solved
-              </span>
+                    <span className='slackButtonDescription'>Slack Solved</span>
                 </Menu.Item>
 
                 <Menu.Item name='gitSolved' active={activeItem === 'gitSolved'} onClick={this.gitSolved} >
 
                     <GitHubIcon />
 
-                    <span className='slackButtonDescription'>
-                        Solved
-                  </span>
+                    <span className='slackButtonDescription'>Solved</span>
                 </Menu.Item>
             </Fragment>
 

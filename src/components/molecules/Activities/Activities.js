@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Grid, Menu, TextArea, Form } from 'semantic-ui-react';
-import axios from 'axios';
 import FileTable from '../FileTable';
 import AsideCTA from '../AsideCTA';
 
@@ -25,8 +24,11 @@ class Activities extends Component {
 
   }
 
+  handleOnChange = (e) => this.props.handleReadMe(e.target.value)
+
   render() {
-    
+
+    const { readMe, } = this.props
 
     return (
       <Fragment>
@@ -40,7 +42,7 @@ class Activities extends Component {
             <Form>
               <TextArea autoHeight
                 placeholder='placeholder text'
-                value={this.state.currentReadMe}
+                value={readMe}
                 onChange={this.handleOnChange}
               >
 
@@ -50,8 +52,8 @@ class Activities extends Component {
 
           <Grid.Column width={4}>
             <Menu fluid vertical tabular='right' style={{ textAlign: 'left' }}>
-             
-              <AsideCTA/>
+
+              <AsideCTA />
 
               <Menu.Item name='files'>
 
