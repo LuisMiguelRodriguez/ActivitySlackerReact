@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Segment, Sidebar, Container } from 'semantic-ui-react'
 import LessonPlan from '../../molecules/LessonPlan'
-import Activities from '../../molecules/Activities';
+import Activities from '../../organisms/Activities';
 import SideBarContent from '../../molecules/SideBarContent';
 import CustomIcon from '../../atoms/icons';
 

@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { Grid, TextArea, Form } from 'semantic-ui-react';
-import FileTable from '../FileTable';
-import AsideCTA from '../AsideCTA';
+import FileTable from '../../molecules/FileTable';
+import AsideCTA from '../../molecules/AsideCTA';
 
 import './activity.css';
 
-import DropdownSelection from '../Dropdown';
+import DropdownSelection from '../../molecules/Dropdown';
 import { connectWithStore } from '../../../store';
 
 
