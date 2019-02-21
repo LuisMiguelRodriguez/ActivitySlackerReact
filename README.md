@@ -14,8 +14,21 @@
 
 
 ## Description
-  ResourceFoods is a site which allows you search for food recipes by entering ingredients that you may have in stock at home. If your sign up
-  you will have the ability save your favorite recipes and custom recipes as well having a history of you recent search items.
+  ActivitySlacker is an interface that works with a local repository which holds lesson plans and activities that is also integrated with slack to provide an interactive class room experience.
+
+## Current Features
+- Currently only works with 3 Lessons per Subject
+- access Lesson 3 lessons per subject
+- access readme files for activities
+- Slack readme files into a channel
+- ability to edit readme file before slacking
+- upload unsolved folder for the activity
+- upload solved folder for the activity
+- add solved folder to a designated github repo which 
+  automatically gets pushed to github
+
+## Future Features
+- 5 Lessons per subject
 
 ## Technologies Used
 
