@@ -30,6 +30,36 @@
 ## Future Features
 - 5 Lessons per subject
 
+## Installation 
+
+1 - Create a slack app @ [Slack](https://api.slack.com/apps/new)
+  - You will need to choose the slack workspace at where you could like use the app and you will also need to name it.
+  - Set permissions 
+    - click add features and functionality
+    - click Permissions
+    - scroll down to Scopes
+    - In the drop you need to select the following
+      - Under Conversations choose: Send messages as user
+      - Under Conversations choose: Post to specific channels in Slack
+      - Under Files choose: Upload and modify files as user
+  - Click Save Changes
+  - @ the top of the page click Install App to workspace
+    - choose #_all to install the app to
+    - now you will be given an OAuth Access Token
+  - Now you can place the Token in your .env file 
+    ```
+    TOKEN=[Your new Token]
+    ```
+
+2 - Finish setting up your .env
+  - In the .env file set the following
+    ```
+    TRILOGY_DIR=[Absolute Path to Trilogy's Repo]
+    STUDENT_REPO=[Absolute Path to Student Facing Repo]
+    ```
+3 - Test App and Enjoy !
+
+
 ## Technologies Used
 
   ### Front-end  
